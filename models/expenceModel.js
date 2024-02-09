@@ -1,4 +1,6 @@
-const mongoose = require('mongoose')
+//expenceModel.js
+
+const mongoose = require('mongoose');
 
 const expencesSchema = new mongoose.Schema({
     expence: {
@@ -10,14 +12,14 @@ const expencesSchema = new mongoose.Schema({
     },
     sum: {
         type: Number,
-        require: [true, 'mandatory field']
+        required: [true, 'mandatory field'],
     },
     date: {
-        type: date,
-        require: [true, 'mandatory field']
+        type: Date,
+        required: [true, 'mandatory field'],
     }
-})
+});
 
-const Expences = mongoose.model('Expences', expencesSchema)
+const Expences = mongoose.model('Expences', expencesSchema);
 
-module.exports = expencesSchema
+module.exports = Expences;

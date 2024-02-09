@@ -1,13 +1,12 @@
+//app.js
+
 const express = require('express');
 const app = express();
-const router = express.Router();
-app.use(express.json())
-const hotelsRouter = express.Router();
-const morgan = require('morgan')
- 
+const morgan = require('morgan');
+const expencesRouter = require('./routes/expenceRoute');
 
- 
-app.use(morgan('dev'))
-app.use('/api/v1/exprences',expencesRouter);
+app.use(morgan('dev'));
+app.use(express.json());
+app.use('/api/v1/expences', expencesRouter);
 
 module.exports = app;

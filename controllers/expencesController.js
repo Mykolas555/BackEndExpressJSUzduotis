@@ -1,96 +1,92 @@
-const fs = require('fs');
+//expenceController.js
+
 const Expences = require('./../models/expenceModel');
 
-exports.getAllHotels =  async (req,res)=>{
-    try{
-        const hotels = await Hotel.find();
-        res
-    .status(200)
-    .json({
-        status:'sucess',
-        results:hotels.length,
-        data:{
-          hotels
-        }
-    })
-    }catch(err){
+exports.getAllExpences = async (req, res) => {
+    try {
+        const expences = await Expences.find();
+        res.status(200).json({
+            status: 'success',
+            results: expences.length,
+            data: {
+                expences
+            }
+        });
+    } catch (err) {
+        console.log(err)
         res.status(404).json({
             status: 'failed',
             message: err
-        })
-    }
-};
- 
-exports.getHotel = async (req,res)=>{
-    try{
-        const hotel = await Hotel.findByID(req.params.id)
-    res
-    .status(200)
-    .json({
-        status:'success',
-        data:{
-            hotel
-        }
-    })
-    }catch(err){
-        res.status(404).json({
-            status: 'failed',
-            message: err
-        })
+        });
     }
 };
 
-exports.createHotel = async (req, res)=>{
-    try{
-        const newHotel = await Hotel.create(req.body)
-        res
-        .status(201)
-        .json({
-            status:'success',
-            message: "New hotel created",
-            data: newHotel
-        })
-    }catch(err){
+exports.getExpence = async (req, res) => {
+    try {
+        const expence = await Expences.findById(req.params.id);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                expence
+            }
+        });
+    } catch (err) {
         res.status(404).json({
             status: 'failed',
             message: err
-        })
+        });
     }
-}
+};
 
-exports.updateHotel = async (req,res)=>{
-    try{
-        const hotel = await Hotel.findByIdAndUpdate(req.params.id, req.body,{
+exports.createExpence = async (req, res) => {
+    try {
+        const newExpence = await Expences.create(req.body);
+        res.
+            status(200).json({
+            status: 'success',
+            message: "New expense created",
+            data: newExpence
+        });
+    } catch (err) {
+        res.status(404).json({
+            status: 'failed',
+            message: err
+        });
+    }
+};
+
+exports.updateExpence = async (req, res) => {
+    try {
+        const expence = await Expences.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
         });
-        res
-        .status(200)
-        .json({
-        status:'success',
-        message: "Hotel Updated",
-        data: {
-            hotel
-        }
-    })
-    }catch(err){
-        res
-        .status(404).json({
-        status: 'failed',
-        message: err
-        })
+        res.status(200).json({
+            status: 'success',
+            message: "Expence Updated",
+            data: {
+                expence
+            }
+        });
+    } catch (err) {
+        res.status(404).json({
+            status: 'failed',
+            message: err
+        });
     }
-}
+};
 
-exports.deleteHotel = async (req,res)=>{
-    try{
-        await Hotel.findByIdAndDelete(req.params.id);
-        res
-    }catch(err){
-        res
-        .status(404).json({
-        status: 'failed',
-        message: err
-        })
+exports.deleteExpence = async (req, res) => {
+    try {
+        await Expences.findByIdAndDelete(req.params.id);
+        res.status(200).json({
+            status: 'success',
+            data: null
+        });
+    } catch (err) {
+        res.status(404).json({
+            status: 'failed',
+            message: err
+        });
     }
 };
