@@ -1,0 +1,18 @@
+{
+  "name": "jsexpressuzduotis",
+  "version": "1.0.0",
+  "description": "BckEnd uzduotis",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Nikolas",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.3"
+  }
+}
