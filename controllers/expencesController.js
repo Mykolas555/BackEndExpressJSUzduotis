@@ -1,4 +1,3 @@
-//expenceController.js
 
 const Expences = require('./../models/expenceModel');
 
