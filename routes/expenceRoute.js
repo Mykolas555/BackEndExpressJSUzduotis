@@ -15,4 +15,7 @@ router
     .patch(expencesController.updateExpence)
     .delete(expencesController.deleteExpence);
 
+router
+    .route('/date-range/:startDate/:endDate').get(expencesController.getItemsInDateRange);
+
 module.exports = router;

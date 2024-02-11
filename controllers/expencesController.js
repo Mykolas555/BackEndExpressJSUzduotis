@@ -90,3 +90,34 @@ exports.deleteExpence = async (req, res) => {
         });
     }
 };
+
+exports.getItemsInDateRange = async (req, res) => {
+    try {
+        const startDate = new Date(req.params.startDate);
+        const endDate = new Date(req.params.endDate);
+        endDate.setUTCHours(23, 59, 59, 999);
+
+        const itemsInDateRange = await Expences.find({
+            date: {
+                $gte: startDate,
+                $lte: endDate,
+            },
+        });
+
+        const totalExpenses = itemsInDateRange.reduce((total, expense) => total + expense.sum, 0).toFixed(2);
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                results: itemsInDateRange.length,
+                totalExpenses,
+                itemsInDateRange
+            }
+        });
+    } catch (err) {
+        res.status(404).json({
+            status: 'failed',
+            message: err
+        });
+    }
+};
